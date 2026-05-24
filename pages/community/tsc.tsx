@@ -217,7 +217,7 @@ export default function TSC() {
             <NewsletterSubscribe
               type='TSC Voting'
               title='Get notified when TSC is voting'
-              subtitle="You'll receive an email whenever someone requests the TSC to vote"
+              subtitle="You'll receive an email whenever someone requests the TSC to vote."
               className='text-center'
               dark
             />

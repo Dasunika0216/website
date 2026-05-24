@@ -12,8 +12,6 @@ import data from '../../dashboard.json';
 export default function Dashboard() {
   return (
     <GenericLayout title='AsyncAPI - Dashboard' description={'description'} image={'image'} wide>
-      <title>AsyncAPI - Dashboard</title>
-
       <div className='pt-8 pb-12 bg-white dark:bg-dark-background min-h-screen'>
         <Header />
         <div className='mt-10 flex w-full flex-col gap-8 md:flex-row md:items-stretch'>

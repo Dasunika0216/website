@@ -2,7 +2,7 @@ import BasePage from './BasePage';
 
 class CaseStudiesPage extends BasePage {
   verifyPageLoaded() {
-    this.verifyHeadingExists('Case Studies');
+    this.verifyHeadingExists('Real Stories, Real Impact');
   }
 }
 
