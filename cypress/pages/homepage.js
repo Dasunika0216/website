@@ -65,7 +65,7 @@ class HomePage extends BasePage {
     return this.verifyElementIsVisible(selector).and('have.attr', 'href', link);
   }
 
-  verifyReadTheDocsButton(link = 'https://www.asyncapi.com/slack-invite') {
+  verifySlackCTAButton(link = 'https://www.asyncapi.com/slack-invite') {
     return cy.get(`[data-testid="Button-link"][href="${link}"]`).should('be.visible');
   }
 

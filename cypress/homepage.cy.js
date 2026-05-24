@@ -36,7 +36,7 @@ describe('Home Page E2E Tests Using Base Components', () => {
   });
 
   it('should show the primary CTA Slack button', () => {
-    homePage.verifyReadTheDocsButton();
+    homePage.verifySlackCTAButton();
   });
 
   it('should display the Google Calendar link', () => {
