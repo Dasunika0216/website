@@ -87,7 +87,14 @@ export default function Pill({
               </a>
             </div>
             {isCollapsible && (
-              <button className='mr-2' onClick={onClickCollapse} data-testid='RoadmapItem-button'>
+              <button
+                type='button'
+                className='mr-2'
+                aria-label={isCollapsed ? 'Expand roadmap item' : 'Collapse roadmap item'}
+                aria-expanded={!isCollapsed}
+                onClick={onClickCollapse}
+                data-testid='RoadmapItem-button'
+              >
                 <IconArrowRight
                   className={`h-4 text-gray-900 dark:text-white ${isCollapsed ? 'rotate-90' : '-rotate-90'}`}
                 />
