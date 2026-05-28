@@ -35,7 +35,8 @@ export default function LinkComponent({ children, locale, target = '_self', rel 
 
   const pathSlug = asPath.split('/')[1];
   const langFromPath = languages.includes(pathSlug) ? pathSlug : undefined;
-  const language = typeof query.lang === 'string' ? query.lang : langFromPath || defaultLanguage;
+  const queryLang = typeof query.lang === 'string' && languages.includes(query.lang) ? query.lang : undefined;
+  const language = queryLang || langFromPath || defaultLanguage;
 
   const originalHref = props.href ?? pathname;
   const isExternal = originalHref.startsWith('http');
