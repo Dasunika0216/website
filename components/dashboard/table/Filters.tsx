@@ -1,4 +1,4 @@
-import { useFloating } from '@floating-ui/react-dom-interactions';
+import { useFloating } from '@floating-ui/react';
 import type { RefObject } from 'react';
 import React, { useEffect, useRef, useState } from 'react';
 
