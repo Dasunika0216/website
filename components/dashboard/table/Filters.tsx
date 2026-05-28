@@ -80,7 +80,7 @@ export default function Filters({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const { x, y, reference, floating, strategy } = useFloating({
+  const { x, y, refs, strategy } = useFloating({
     placement,
     open
   });
@@ -104,7 +104,7 @@ export default function Filters({
     <>
       <button
         onClick={() => setOpen(!open)}
-        ref={reference}
+        ref={refs.setReference}
         className={`flex items-center justify-center w-8 h-8 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-dark-background hover:bg-gray-50 dark:hover:bg-dark-card transition-all duration-200 hover:shadow-md ${className}`}
         aria-label='Filter issues'
         data-testid='Filters-img-container'
@@ -119,7 +119,7 @@ export default function Filters({
       <div ref={wrapperRef}>
         {open && (
           <div
-            ref={floating}
+            ref={refs.setFloating}
             className='z-50'
             style={{
               position: strategy,
