@@ -1,4 +1,4 @@
-import { useFloating, shift, flip, offset } from '@floating-ui/react';
+import { flip, offset, shift, useFloating } from '@floating-ui/react';
 import type { RefObject } from 'react';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -110,11 +110,7 @@ export default function Filters({
         aria-label='Filter issues'
         data-testid='Filters-img-container'
       >
-        <img
-          alt='filter menu'
-          src='/img/illustrations/icons/filters-icon.svg'
-          className='w-4 h-4 dark:opacity-80'
-        />
+        <img alt='filter menu' src='/img/illustrations/icons/filters-icon.svg' className='w-4 h-4 dark:opacity-80' />
       </button>
 
       <div ref={wrapperRef}>

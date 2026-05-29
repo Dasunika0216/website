@@ -1,4 +1,4 @@
-import { useFloating, shift, flip, offset } from '@floating-ui/react';
+import { flip, offset, shift, useFloating } from '@floating-ui/react';
 import React, { useState } from 'react';
 
 /**
