@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Column, HoverBox } from './ComparisonCommon';
+import { Column, ComparisonBox, HoverBox } from '../ComparisonCommon';
 
 export interface HoverState {
   Paths: boolean;
@@ -13,12 +13,16 @@ export interface AsyncAPI3ChannelComparisonProps {
   className?: string;
 }
 
+/**
+ * Static nested box showing the Message structure (Headers + Payload).
+ * Used identically in both the AsyncAPI 2.x and AsyncAPI 3.0 columns.
+ */
 const MessageDetails = () => (
-  <div className='m-2 mr-1 box-border flex-1 border border-black p-2 dark:border-gray-600'>
+  <ComparisonBox className='mr-1 box-border flex-1'>
     Message
-    <div className='m-2 mr-1 box-border flex-1 border border-black p-2 dark:border-gray-600'>Headers</div>
-    <div className='m-2 mr-1 box-border flex-1 border border-black p-2 dark:border-gray-600'>Payload</div>
-  </div>
+    <ComparisonBox className='mr-1 box-border flex-1'>Headers</ComparisonBox>
+    <ComparisonBox className='mr-1 box-border flex-1'>Payload</ComparisonBox>
+  </ComparisonBox>
 );
 
 /**
@@ -42,7 +46,7 @@ export default function Asyncapi3ChannelComparison({ className = '' }: AsyncAPI3
           hoverState={hoverState}
           setHoverState={setHoverState}
           activeClass='bg-yellow-100 dark:bg-yellow-900/40'
-          defaultClass=' '
+          defaultClass=''
           borderClass='border-yellow-300 dark:border-yellow-700'
         >
           <div className='flex flex-1 flex-wrap'>
@@ -95,7 +99,7 @@ export default function Asyncapi3ChannelComparison({ className = '' }: AsyncAPI3
           hoverState={hoverState}
           setHoverState={setHoverState}
           activeClass='bg-yellow-100 dark:bg-yellow-900/40'
-          defaultClass=' '
+          defaultClass=''
           borderClass='border-yellow-300 dark:border-yellow-700'
         >
           <HoverBox<HoverState>
@@ -129,24 +133,50 @@ export default function Asyncapi3ChannelComparison({ className = '' }: AsyncAPI3
           hoverState={hoverState}
           setHoverState={setHoverState}
           activeClass='bg-yellow-100 dark:bg-yellow-900/40'
-          defaultClass=' '
+          defaultClass=''
           borderClass='border-yellow-300 dark:border-yellow-700'
         >
           <div className='flex flex-1 flex-wrap'>
-            <div className='m-2 flex-1 border border-orange-300 p-2 dark:border-orange-700'>
-              Operation
+            <HoverBox<HoverState>
+              label='Operation'
+              fieldKey='Operation'
+              hoverState={hoverState}
+              setHoverState={setHoverState}
+              activeClass='bg-orange-100 dark:bg-orange-900/40'
+              borderClass='border-orange-300 dark:border-orange-700'
+              className='flex-1'
+              useMouseOver
+            >
               <div className='flex flex-1 flex-col flex-wrap'>
-                <div className='m-2 border border-blue-500 bg-white p-2 hover:bg-blue-200 dark:border-blue-400 dark:bg-gray-900 dark:hover:bg-blue-900/50'>
-                  action (send or receive)
-                </div>
-                <div className='m-2 border border-blue-500 bg-white p-2 hover:bg-blue-200 dark:border-blue-400 dark:bg-gray-900 dark:hover:bg-blue-900/50'>
-                  channel
-                </div>
-                <div className='m-2 border border-blue-500 bg-white p-2 hover:bg-blue-200 dark:border-blue-400 dark:bg-gray-900 dark:hover:bg-blue-900/50'>
-                  messages
-                </div>
+                <HoverBox<HoverState>
+                  label='action (send or receive)'
+                  fieldKey='Operation'
+                  hoverState={hoverState}
+                  setHoverState={setHoverState}
+                  activeClass='bg-blue-200 dark:bg-blue-900/50'
+                  borderClass='border-blue-500 dark:border-blue-400'
+                  useMouseOver
+                />
+                <HoverBox<HoverState>
+                  label='channel'
+                  fieldKey='PathItem'
+                  hoverState={hoverState}
+                  setHoverState={setHoverState}
+                  activeClass='bg-yellow-300 dark:bg-yellow-800/60'
+                  borderClass='border-yellow-600 dark:border-yellow-700'
+                  useMouseOver
+                />
+                <HoverBox<HoverState>
+                  label='messages'
+                  fieldKey='Message'
+                  hoverState={hoverState}
+                  setHoverState={setHoverState}
+                  activeClass='bg-red-400 dark:bg-red-900/60'
+                  borderClass='border-red-600 dark:border-red-700'
+                  useMouseOver
+                />
               </div>
-            </div>
+            </HoverBox>
           </div>
         </HoverBox>
       </Column>
