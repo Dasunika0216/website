@@ -26,7 +26,7 @@ class TSCPage extends BasePage {
 
   verifyTSCMemberSocialLinks(name, links) {
     // Search for the member to bring them into view regardless of pagination
-    cy.get('input[placeholder*="Search members"]').clear().type(name);
+    cy.get('input[aria-label="Search TSC members"]').clear().type(name);
     cy.contains('h3', name)
       .closest('[class*="rounded-xl"]')
       .within(() => {
@@ -34,7 +34,7 @@ class TSCPage extends BasePage {
         if (links.Twitter) cy.get(`a[href="${links.Twitter}"]`).should('be.visible');
         if (links.Linkedin) cy.get(`a[href="${links.Linkedin}"]`).should('be.visible');
       });
-    cy.get('input[placeholder*="Search members"]').clear();
+    cy.get('input[aria-label="Search TSC members"]').clear();
   }
 }
 
