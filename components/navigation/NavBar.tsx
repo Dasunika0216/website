@@ -73,6 +73,7 @@ export default function NavBar({ className = '', hideLogo = false }: NavBarProps
     } else {
       // Strip locale prefix from asPath when route file has no [lang] segment (e.g. /de/tools/cli)
       const slug = asPath.split('/')[1];
+
       if (languages.includes(slug)) {
         pathnameWithoutLocale = asPath.slice(`/${slug}`.length) || '';
       }
