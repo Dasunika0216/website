@@ -65,18 +65,27 @@ export default function NavBar({ className = '', hideLogo = false }: NavBarProps
    * @returns {string[]} - An array of unique language options with first letter in uppercase.
    */
   const getUniqueLangs = (): string[] => {
-    let pathnameWithoutLocale = pathname;
+    let pathnameWithoutLocale = pathname ?? '';
 
-    // Check if the pathname includes "/[lang]", if so, replace it with an empty string
-    if (pathname && pathname.includes('/[lang]')) {
-      pathnameWithoutLocale = pathname.replace('/[lang]', '');
+    // Strip dynamic [lang] segment from localized routes (e.g. /[lang]/tools/cli -> /tools/cli)
+    if (pathnameWithoutLocale.includes('/[lang]')) {
+      pathnameWithoutLocale = pathnameWithoutLocale.replace('/[lang]', '');
+    } else {
+      // Strip locale prefix from asPath when route file has no [lang] segment (e.g. /de/tools/cli)
+      const slug = asPath.split('/')[1];
+      if (languages.includes(slug)) {
+        pathnameWithoutLocale = asPath.slice(`/${slug}`.length) || '';
+      }
     }
 
-    // Filter unique languages based on i18nPaths that include the modified pathnameWithoutLocale
-    const uniqueLangs = Object.keys(i18nPaths).filter((lang) => i18nPaths[lang].includes(pathnameWithoutLocale));
+    // Homepage routes use '' in i18nPaths, not '/'
+    if (pathnameWithoutLocale === '/') {
+      pathnameWithoutLocale = '';
+    }
 
-    // If no unique languages are found, default to ['en']
-    return uniqueLangs.length === 0 ? ['en'] : uniqueLangs;
+    const uniqueLangs = languages.filter((lang) => i18nPaths[lang]?.includes(pathnameWithoutLocale));
+
+    return uniqueLangs.length === 0 ? [defaultLanguage] : uniqueLangs;
   };
 
   const uniqueLangs = getUniqueLangs().map((lang) => ({
